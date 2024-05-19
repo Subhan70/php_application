@@ -18,7 +18,7 @@ phases:
       - echo "Running tests..."
       - echo "Building Docker image..."
       - docker build -t "docker.io/azure/php-application:latest" .
-      - docker push "docker.io/azure/php-application:latest"
+      - docker push "docker.io/subhanrider/azure/php-application:latest"
   post_build:
     commands:
       - echo "Build completed successfully!"
