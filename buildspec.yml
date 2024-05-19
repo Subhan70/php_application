@@ -6,7 +6,7 @@ version: 0.2
 #     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
 #     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
 phases:
-  pre-build:
+  pre_build:
     commands:
       - echo Retrieving Docker login credentials...
       # Use AWS CLI to retrieve Docker login password from Secrets Manager
