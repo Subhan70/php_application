@@ -1,0 +1,28 @@
+version: 0.2
+
+# env:
+#   parameter-store:
+#     DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
+#     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
+#     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
+phases:
+  pre-build:
+    commands:
+      - echo Retrieving Docker login credentials...
+      # Use AWS CLI to retrieve Docker login password from Secrets Manager
+      - DOCKER_PASSWORD=Moh@mmed703
+      # Log in to Docker using the retrieved credentials
+      - echo "$DOCKER_PASSWORD" | docker login --username subhanrider --password-stdin docker.io
+  build:
+    commands:
+      - echo "Running tests..."
+      - echo "Building Docker image..."
+      - docker build -t "docker.io/azure/php-application:latest" .
+      - docker push "docker.io/azure/php-application:latest"
+  post_build:
+    commands:
+      - echo "Build completed successfully!"
+# artifacts:
+#   files:
+#     - '**/*'
+#   base-directory: ../simple-python-app
